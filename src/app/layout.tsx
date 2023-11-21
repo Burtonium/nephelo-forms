@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import classNames from "classnames";
+import Navbar from "./components/Navbar";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -33,8 +34,9 @@ export default function RootLayout({
   const theme = cookies().get('theme')?.value;
   return (
     <html className={classNames({ dark: theme === 'dark' })} lang="en">
-      <body className={`font-sans ${montserrat.variable} ${oswald.variable} dark:bg-zinc-900`}>
+      <body className={`font-sans ${montserrat.variable} ${oswald.variable} dark:bg-zinc-900 bg-zinc-100`}>
         <TRPCReactProvider cookies={cookies().toString()}>
+          <Navbar />
           {children}
         </TRPCReactProvider>
       </body>

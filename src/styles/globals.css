@@ -5,3 +5,44 @@
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-title);
 }
+
+.content-grid {
+  --max-content-width: 60ch;
+  --breakout-difference: 0.2;
+
+  /*  Compute total allowed grid width to `--breakout-difference` 
+      larger than content area  */
+  --breakout-grid-width: calc(
+      var(--max-content-width) +
+      (var(--max-content-width) * var(--breakout-difference))
+    );
+
+  display: grid;
+  grid-template-columns:
+    [grid-start] 1fr 
+    [content-start] minmax(
+      min(100%, var(--max-content-width)),
+      1fr
+    )
+    [content-end] 1fr 
+    [grid-end];
+  width: 100%;
+  row-gap: 1rem;
+  column-gap: 1rem;
+}
+
+.content-grid > *:not(.breakout) {
+  grid-column: content;
+}
+
+.content-grid > .breakout {
+  grid-column: grid;
+}
+
+.content-grid > .grid-end {
+  grid-column: grid-end;
+}
+
+.content-grid > .content-end {
+  grid-column: content-end;
+}

@@ -1,9 +1,9 @@
 'use client';
 import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { PlusIcon } from '@heroicons/react/20/solid';
-import DarkModeToggle from 'src/app/_components/DarkModeToggle';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClose, faBars } from '@fortawesome/free-solid-svg-icons';
+import DarkModeToggle from 'src/app/components/DarkModeToggle';
 import classNames from 'classnames';
 
 const user = {
@@ -14,8 +14,7 @@ const user = {
 }
 
 const navigation = [
-  { name: 'Forms', href: '#', current: true },
-  { name: 'Projects', href: '#', current: false },
+  { name: 'Forms', href: '#', current: true }
 ]
 
 const userNavigation = [
@@ -38,9 +37,9 @@ export default function Navbar() {
                     <span className="absolute -inset-0.5" />
                     <span className="sr-only">Open main menu</span>
                     {open ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                      <FontAwesomeIcon icon={faClose} className="block h-6 w-6" aria-hidden="true" />
                     ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                      <FontAwesomeIcon icon={faBars} className="block h-6 w-6" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>
@@ -71,11 +70,10 @@ export default function Navbar() {
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <a
-                    href="/forms/create"
-                    className="relative inline-flex items-center gap-x-1.5 rounded-md bg-orange-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                    href="/"
+                    className="relative inline-flex items-center gap-x-1.5 bg-orange-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                   >
-                    <PlusIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-                    New Form
+                    Sign in
                   </a>
                 </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
@@ -123,7 +121,6 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-          
           <Disclosure.Panel className="md:hidden">
             <div className="pb-3 pt-2">
               {navigation.map((item) => (

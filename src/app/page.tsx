@@ -1,10 +1,9 @@
-import Navbar from 'src/app/_components/Navbar';
-import './theme';
+import FormBuilder from './components/FormBuilder';
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <FormBuilder />
     </>
   )
 }
