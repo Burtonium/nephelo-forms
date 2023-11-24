@@ -1,42 +1,18 @@
-import { type FC, type PropsWithChildren, createContext, useContext, useState, useCallback } from "react";
-import { FieldType, type CustomForm, Field } from "./types"
-
-type FormBuilderContextType = {
-  form: CustomForm;
-  reorderField: (field: Field, newIndex: number) => void;
-  createField: (type: FieldType, index: number) => void;
-}
-
-const defaultForm: CustomForm = {
-  titleField: {
-    id: 'title',
-    type: FieldType.Title,
-    title: 'Untitled Form'
-  },
-  fields: []
-};
+import { type FC, type PropsWithChildren, createContext, type Dispatch } from "react";
+import { useReducer } from "react";
+import { type BuilderState, type BuilderActions, getInitialState, reducer } from "~/state/reducers/formBuilder";
 
 
-export const FormBuilderContext = createContext<FormBuilderContextType>({
-  form: defaultForm,
-} as FormBuilderContextType);
+type ContextType = [BuilderState, Dispatch<BuilderActions>];
+
+export const FormBuilderContext = createContext<ContextType>([] as unknown as ContextType);
 
 export const FormBuilderContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [form, setForm] = useState<CustomForm>(defaultForm);
-
-  const reorderField = useCallback<FormBuilderContextType['reorderField']>((field, newIndex) => {
-    const found = form.fields.find((f) => f.id === field.id);
-  }, []);
-
-  const createField = useCallback<FormBuilderContextType['createField']>((type, index) => {
-    /* suh dude */
-  }, []);
+  const ctx = useReducer(reducer, getInitialState());
 
   return (
-    <FormBuilderContext.Provider value={{ form, createField, reorderField }} >
+    <FormBuilderContext.Provider value={ctx} >
       {children}
     </FormBuilderContext.Provider>
   )
 }
-
-export const useFormBuilder = () =>  useContext(FormBuilderContext);

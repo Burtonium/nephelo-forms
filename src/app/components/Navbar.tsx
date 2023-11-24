@@ -71,7 +71,7 @@ export default function Navbar() {
                 <div className="flex-shrink-0">
                   <a
                     href="/"
-                    className="relative inline-flex items-center gap-x-1.5 bg-orange-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                    className="btn"
                   >
                     Sign in
                   </a>
