@@ -3,13 +3,13 @@ import { type FC, type PropsWithChildren } from "react";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import { FieldType } from "../../types";
 import { actions } from "~/state/reducers/formBuilder";
 import { FormBuilderContextProvider } from "./FormBuilderContext";
 import FieldBuilder from "./FieldBuilder";
 import useFormBuilder from "~/hooks/useDataBuilder";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FieldType } from "@prisma/client";
 
 const FieldCreatorButton: FC<PropsWithChildren<{ type: FieldType }>> = ({ children, type }) => {
   const { dispatch } = useFormBuilder();
@@ -27,9 +27,11 @@ const FieldCreatorButton: FC<PropsWithChildren<{ type: FieldType }>> = ({ childr
 const FieldBuilders = () => {
   const { fields } = useFormBuilder();
 
+  console.log('YOOO', fields);
+
   return (
     <div className="space-y-5">
-      {fields.filter((f) => f.parentId === undefined).map((f) => (
+      {fields.filter((f) => !f.parentId).map((f) => (
         <FieldBuilder key={f.id} field={f} />
       ))}
     </div>

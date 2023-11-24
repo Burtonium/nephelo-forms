@@ -1,13 +1,13 @@
 import { useMemo, type FC, useCallback } from "react";
-import { FieldType, type Field } from "../../types";
 import FieldControls from "./FieldControls";
 import useFieldBuilderInput from "~/hooks/useFieldBuilderInput";
 import useFormBuilder, { actions } from "~/hooks/useDataBuilder";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { type FieldInsert } from "prisma/zod";
 
 type Props = {
-  field: Field;
+  field: FieldInsert;
 }
 
 const ChoiceBuilder: FC<Props> = ({ field }) => {
@@ -32,12 +32,13 @@ const MultipleChoiceBuilder: FC<Props> = ({ field }) => {
   const addChoice = useCallback(() => {
     const index = Math.max(...choices.map((c) => c.index)) + 1;
     dispatch(actions.createField({
-      type: FieldType.CHOICE,
+      formId: field.formId,
+      type: "CHOICE",
       parentId: field.id,
       index,
       data: { label: `Choice ${String.fromCharCode(97 + index).toLocaleUpperCase()}` }
     }))
-  }, [choices, dispatch, field.id])
+  }, [choices, dispatch, field.formId, field.id])
 
   return (
     <div className=" dark:bg-zinc-800/50 space-y-5 p-5 border-l-4 border-orange-400 bg-white shadow-md">

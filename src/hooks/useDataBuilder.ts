@@ -6,12 +6,10 @@ export const useFormBuilder = () => {
   const [ctx, dispatch] = useContext(FormBuilderContext);
 
   const fields = useMemo(
-    () => {
-      const values = Object.values(ctx.form.fields);
-      return sortBy(values, (v) => v.index);
-    },
-    [ctx.form.fields]
+    () => sortBy(ctx.fields, (v) => v.index),
+    [ctx.fields]
   )
+
   return {
     formId: ctx.form.id,
     fields,

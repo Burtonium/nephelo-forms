@@ -5,7 +5,7 @@ const useFieldBuilderInput = (id: string, dataKey: string) => {
   const { dispatch } = useFormBuilder();
 
   const onChange = useCallback<ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>>((evt) => {
-    dispatch(actions.updateFieldData({
+    dispatch(actions.updateField({
       id,
       data: {
         [dataKey]: evt.target.value

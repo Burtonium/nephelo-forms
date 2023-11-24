@@ -1,10 +1,10 @@
 import { type FC } from "react";
-import type { Field } from "../../types";
 import FieldControls from "./FieldControls";
 import useFieldBuilderInput from "~/hooks/useFieldBuilderInput";
+import { FieldInsert } from "prisma/zod";
 
 type Props = {
-  field: Field;
+  field: FieldInsert;
 }
 
 const LabelBuilder: FC<Props> = ({ field }) => {

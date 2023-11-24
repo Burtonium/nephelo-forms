@@ -1,10 +1,11 @@
 import { type FC } from "react";
 import useFieldBuilderInput from "~/hooks/useFieldBuilderInput";
-import { FieldType, type Field } from "~/types";
 import FieldControls from "./FieldControls";
+import { type FieldInsert } from "prisma/zod";
+import { FieldType } from "@prisma/client";
 
 type Props = {
-  field: Field;
+  field: FieldInsert;
 }
 
 const TitleBuilder: FC<Props> = ({ field }) => {

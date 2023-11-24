@@ -1,23 +1,23 @@
 import { type FC } from "react";
-import { type Field, FieldType } from "../../types";
+import type { FieldInsert } from "prisma/zod";
 import LabelBuilder from "./LabelBuilder";
 import TitleBuilder from "./TitleBuilder";
 import QuestionBuilder from "./QuestionBuilder";
 import MultipleChoiceBuilder from "./MultipleChoiceBuilder";
 import UnitBuilder from "./UnitBuilder";
 
-const FieldBuilder: FC<{ field: Field }> = ({ field }) => {
+const FieldBuilder: FC<{ field: FieldInsert }> = ({ field }) => {
   switch (field.type) {
-    case FieldType.TITLE:
-    case FieldType.MAIN_TITLE:
+    case "TITLE":
+    case "MAIN_TITLE":
       return <TitleBuilder field={field} />
-    case FieldType.LABEL:
+    case "LABEL":
       return <LabelBuilder field={field} />
-    case FieldType.MULTIPLE_CHOICE:
+    case "MULTIPLE_CHOICE":
       return <MultipleChoiceBuilder field={field} />
-    case FieldType.QUESTION:
+    case "QUESTION":
       return <QuestionBuilder field={field} />
-    case FieldType.UNIT:
+    case "UNIT":
       return <UnitBuilder field={field} />
   }
 }
