@@ -11,7 +11,7 @@ export const useFormBuilder = () => {
   )
 
   return {
-    formId: ctx.form.id,
+    form: ctx.form,
     fields,
     dispatch,
   }

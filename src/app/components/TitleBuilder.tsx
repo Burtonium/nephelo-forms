@@ -3,6 +3,7 @@ import useFieldBuilderInput from "~/hooks/useFieldBuilderInput";
 import FieldControls from "./FieldControls";
 import { type FieldInsert } from "prisma/zod";
 import { FieldType } from "@prisma/client";
+import classNames from "classnames";
 
 type Props = {
   field: FieldInsert;
@@ -19,7 +20,13 @@ const TitleBuilder: FC<Props> = ({ field }) => {
           onChange={onTitleChange}
           placeholder="Form Title"
           value={field.data.title}
-          className="text-4xl bg-transparent w-full" />
+          className={classNames(
+            {
+              "text-4xl": field.type === FieldType.MAIN_TITLE,
+              "text-3xl": field.type === FieldType.TITLE
+            },
+            "bg-transparent w-full"
+          )} />
         {field.type !== FieldType.MAIN_TITLE && (
           <FieldControls fieldId={field.id} />
         )}

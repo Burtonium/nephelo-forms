@@ -1,22 +1,24 @@
 import * as z from "zod"
 import { FieldType } from "@prisma/client"
-import { type CompleteForm, RelatedFormModel } from "./index"
 
-export const FieldModel = z.object({
+export const FieldModelInsert = z.object({
   id: z.string(),
   type: z.nativeEnum(FieldType),
   index: z.number().int(),
   data: z.record(z.string()),
-  formId: z.string(),
   parentId: z.string().nullish(),
 });
 
-export type FieldInsert = z.infer<typeof FieldModel>
+const FieldModel = FieldModelInsert.extend({
+  formId: z.string(),
+})
+
+export type FieldInsert = z.infer<typeof FieldModelInsert>
+
+export type ChildlessField = z.infer<typeof FieldModel>
 
 export interface CompleteField extends z.infer<typeof FieldModel> {
-  form: CompleteForm
-  children: CompleteField[]
-  parent?: CompleteField | null
+  children: ChildlessField[]
 }
 
 /**
@@ -25,7 +27,5 @@ export interface CompleteField extends z.infer<typeof FieldModel> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const RelatedFieldModel: z.ZodSchema<CompleteField> = z.lazy(() => FieldModel.extend({
-  form: RelatedFormModel,
-  children: RelatedFieldModel.array(),
-  parent: RelatedFieldModel.nullish(),
+  children: FieldModel.array(),
 }))

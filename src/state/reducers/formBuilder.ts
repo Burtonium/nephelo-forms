@@ -15,7 +15,6 @@ const makeDefaultField = (formId: string, type: FieldType, options?: { index: nu
 
   const defaultShared = {
     id,
-    formId,
     index: options?.index ?? 0,
     parentId: null
   }
@@ -48,21 +47,18 @@ const makeDefaultField = (formId: string, type: FieldType, options?: { index: nu
         data: { label: 'Untitled Multiple Choice' },
       }, {
         id: uuid(),
-        formId,
         type: FieldType.CHOICE,
         parentId: id,
         data: { label: 'Choice A' },
         index: 0,
       }, {
         id: uuid(),
-        formId,
         type: FieldType.CHOICE,
         parentId: id,
         data: { label: 'Choice B' },
         index: 1,
       }, {
         id: uuid(),
-        formId,
         type: FieldType.CHOICE,
         parentId: id,
         data: { label: 'Choice C' },
@@ -81,15 +77,20 @@ const makeDefaultField = (formId: string, type: FieldType, options?: { index: nu
   }
 }
 
-const formId = uuid();
-const [titleField] = makeDefaultField(formId, FieldType.MAIN_TITLE) as [FieldInsert];
 
-const initialState: BuilderState = {
-  form: {
-    id: uuid(),
-  },
-  fields: [titleField],
+const makeDefaultState = () => {
+  const formId = uuid();
+  const [titleField] = makeDefaultField(formId, FieldType.MAIN_TITLE) as [FieldInsert];
+
+  return {
+    form: {
+      id: uuid(),
+    },
+    fields: [titleField],
+  }
 }
+
+const initialState: BuilderState = makeDefaultState();
 
 const formStateSlice = createSlice({
   name: 'formBuilder',
@@ -157,7 +158,8 @@ const formStateSlice = createSlice({
         ...state,
         fields: sortBy(state.fields.filter((f) => f.id !== id).concat(updated), ['index']).map((f, i) => ({ ...f, index: i }))
       };
-    }
+    },
+    reset: () => makeDefaultState(),
   }
 });
 

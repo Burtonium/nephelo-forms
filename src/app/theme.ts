@@ -1,5 +1,4 @@
 export const setTheme = (theme: 'light' | 'dark') => {
-  console.log('Setting theme', theme);
   document.cookie = `theme=${theme};path=/;`;
   if (theme === 'light') {
     document.querySelector('html')?.classList.remove('dark');

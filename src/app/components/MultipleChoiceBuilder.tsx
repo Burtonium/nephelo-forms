@@ -32,13 +32,12 @@ const MultipleChoiceBuilder: FC<Props> = ({ field }) => {
   const addChoice = useCallback(() => {
     const index = Math.max(...choices.map((c) => c.index)) + 1;
     dispatch(actions.createField({
-      formId: field.formId,
       type: "CHOICE",
       parentId: field.id,
       index,
       data: { label: `Choice ${String.fromCharCode(97 + index).toLocaleUpperCase()}` }
     }))
-  }, [choices, dispatch, field.formId, field.id])
+  }, [choices, dispatch, field.id])
 
   return (
     <div className=" dark:bg-zinc-800/50 space-y-5 p-5 border-l-4 border-orange-400 bg-white shadow-md">
