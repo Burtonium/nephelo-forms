@@ -2,7 +2,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClose, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faBars, faCog, faPerson, faUser } from '@fortawesome/free-solid-svg-icons';
 import DarkModeToggle from 'src/app/components/DarkModeToggle';
 import classNames from 'classnames';
 
@@ -71,6 +71,13 @@ export default function Navbar() {
                 </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                   <Menu as="div" className="relative ml-3">
+                    <div>
+                      <Menu.Button className="relative flex rounded-full bg-zinc-800 text-sm">
+                        <span className="absolute -inset-1.5" />
+                        <span className="sr-only">Open user menu</span>
+                        <FontAwesomeIcon className="text-zinc-400" icon={faUser} />
+                      </Menu.Button>
+                    </div>
                     <Transition
                       as={Fragment}
                       enter="transition ease-out duration-200"
@@ -125,6 +132,14 @@ export default function Navbar() {
               ))}
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4">
+              <div className="flex items-center px-5">
+                <div className="flex-shrink-0">
+                  <FontAwesomeIcon icon={faUser} />
+                </div>
+                <div className="ml-3">
+                  <div className="text-base font-medium text-white">Not logged in</div>
+                </div>
+              </div>
               <div className="mt-3">
                 {userNavigation.map((item) => (
                   <Disclosure.Button
