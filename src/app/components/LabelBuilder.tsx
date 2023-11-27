@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import FieldControls from "./FieldControls";
 import useFieldBuilderInput from "~/hooks/useFieldBuilderInput";
-import { FieldInsert } from "prisma/zod";
+import type { FieldInsert } from "prisma/zod";
 
 type Props = {
   field: FieldInsert;

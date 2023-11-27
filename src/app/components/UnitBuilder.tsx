@@ -34,7 +34,7 @@ const NumberBuilder: FC<Props> = ({ field }) => {
           id={`${field.id}-unit`}
           onChange={onUnitChange}
           value={field.data.unit}
-          className="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+          className="block py-2.5 px-0 w-full text-sm text-zinc-600 bg-transparent border-0 border-b-2 border-zinc-200 appearance-none dark:text-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-0 focus:border-zinc-200 peer">
           {Object.keys(units).map((unit) => (
             <option className="capitalize" key={unit} value={unit}>{unit}</option>
           ))}
@@ -47,7 +47,7 @@ const NumberBuilder: FC<Props> = ({ field }) => {
             id={`${field.id}-denomination`}
             onChange={onDenomChange}
             value={field.data.denomination}
-            className="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+            className="block py-2.5 px-0 w-full text-sm text-zinc-600 bg-transparent border-0 border-b-2 border-zinc-200 appearance-none dark:text-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-0 focus:border-zinc-200 peer">
             {units[field.data.unit]?.map((unit) => (
               <option className="capitalize" key={unit} value={unit}>{unit}</option>
             ))}

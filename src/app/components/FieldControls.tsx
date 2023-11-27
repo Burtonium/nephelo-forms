@@ -1,7 +1,7 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type FC, useCallback } from "react";
-import useFormBuilder, { actions } from "~/hooks/useDataBuilder";
+import useFormBuilder, { actions } from "~/hooks/useFormBuilder";
 
 const FieldControls: FC<{ fieldId: string }> = ({ fieldId: id }) => {
   const { dispatch } = useFormBuilder();

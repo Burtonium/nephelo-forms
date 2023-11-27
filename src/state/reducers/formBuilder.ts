@@ -1,6 +1,6 @@
-import { type Field, FieldType } from '@prisma/client';
+import { FieldType } from '@prisma/client';
 import { type PayloadAction, createSlice, type Reducer } from '@reduxjs/toolkit';
-import { uniqBy } from 'lodash';
+import { sortBy } from 'lodash';
 import { type FormInsert, type FieldInsert } from 'prisma/zod';
 import { v4 as uuid } from 'uuid';
 
@@ -91,7 +91,6 @@ const initialState: BuilderState = {
   fields: [titleField],
 }
 
-
 const formStateSlice = createSlice({
   name: 'formBuilder',
   initialState,
@@ -140,8 +139,24 @@ const formStateSlice = createSlice({
     deleteField: (state, { payload: id }: PayloadAction<string>) => {
       return {
         ...state,
-        fields: state.fields.filter((f) => f.id !== id)
+        fields: sortBy(state.fields.filter((f) => f.id !== id), ['index'])
+          .map((f, i) => ({ ...f, index: i }))
       }
+    },
+    reorder: (state, { payload: { id, index } }: PayloadAction<{ id: string, index: number }>) => {
+      const found = state.fields.find((f) => f.id === id);
+
+      if (!found) return state;
+      
+      const updated = {
+        ...found,
+        index: index + 0.5
+      }
+
+      return {
+        ...state,
+        fields: sortBy(state.fields.filter((f) => f.id !== id).concat(updated), ['index']).map((f, i) => ({ ...f, index: i }))
+      };
     }
   }
 });

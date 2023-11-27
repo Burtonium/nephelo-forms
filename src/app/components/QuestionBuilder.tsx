@@ -1,9 +1,9 @@
 import { type FC } from "react";
-import type { Field } from "../../types";
+import type { FieldInsert } from "prisma/zod";
 import FieldControls from "./FieldControls";
 
 type Props = {
-  field: Field;
+  field: FieldInsert;
 }
 
 const QuestionBuilder: FC<Props> = ({ field }) => {
