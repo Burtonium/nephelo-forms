@@ -115,7 +115,7 @@ const FormBuilder = () => {
   }, [createForm, fields, form, router]);
 
   return (
-    <div className='relative content-grid dark:text-white my-10'>
+    <div className='relative content-grid my-10'>
       <Spinner loading={createForm.isLoading} />
       <div className="relative">
         <FieldBuilders />

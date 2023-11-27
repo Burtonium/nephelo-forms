@@ -19,9 +19,11 @@ const TitleDisplay: FC<Props> = ({ field }) => {
       )}>
         {field.data.title}
       </h1>
-      <p>
-        {field.data.description}
-      </p>
+      {field.data.description && (
+        <p>
+          {field.data.description}
+        </p>
+      )}
     </div>
   )
 }

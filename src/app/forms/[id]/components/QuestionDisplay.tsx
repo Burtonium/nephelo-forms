@@ -13,7 +13,7 @@ const QuestionBuilder: FC<Props> = ({ field }) => {
       </label>
       <input
         placeholder="Answer"
-        className="bg-transparent w-full" />
+        className="w-full" />
     </div>
   )
 }

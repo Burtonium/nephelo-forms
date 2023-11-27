@@ -11,7 +11,7 @@ const NumberDisplay: FC<Props> = ({ field }) => {
       <label htmlFor="number-input" className="block mb-2">
         {field.data.label}
       </label>
-      <input type="number" id="number-input" aria-describedby="helper-text-explanation" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300" required />
+      <input placeholder="Amount" type="number" id="number-input" aria-describedby="helper-text-explanation" required />
     </div>
   )
 }

@@ -13,8 +13,8 @@ const CheckboxDisplay: FC<Props> = ({ field }) => {
       </div>
       {field.children.map((choice) => (
         <div key={choice.id} className="flex items-center">
-          <input id={choice.id} type="checkbox" className="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 dark:focus:ring-orange-500 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-500" />
-          <label htmlFor={choice.id} className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+          <input id={choice.id} type="checkbox" className="w-4 h-4 text-orange-400 bg-zinc-100 border-zinc-300 dark:bg-zinc-800 rounded focus:ring-orange-400 dark:focus:ring-orange-400 dark:border-zinc-500" />
+          <label htmlFor={choice.id} className="ms-2 text-sm">
             {choice.data.label}
           </label>
         </div>
