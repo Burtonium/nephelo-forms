@@ -1,9 +1,11 @@
-import { type FC } from "react";
+import { useState, type FC } from "react";
 import useFieldBuilderInput from "~/hooks/useFieldBuilderInput";
 import FieldControls from "./FieldControls";
 import { type FieldInsert } from "prisma/zod";
 import { FieldType } from "@prisma/client";
 import classNames from "classnames";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   field: FieldInsert;
@@ -12,13 +14,16 @@ type Props = {
 const TitleBuilder: FC<Props> = ({ field }) => {
   const onTitleChange = useFieldBuilderInput(field.id, 'title');
   const onDescChange = useFieldBuilderInput(field.id, 'description');
+  const placeholder = field.type === FieldType.MAIN_TITLE ? 'Form Title' : 'Untitled Title';
+  const descPlaceholder = field.type === FieldType.MAIN_TITLE ? 'Form Description' : 'Description...';
+  const [showDesc, setShowDesc] = useState(false);
 
   return (
-    <div className="space-y-2 dark:bg-zinc-800/50 p-5 border-l-4 border-orange-400 bg-white shadow-md">
+    <div className="space-y-3 dark:bg-zinc-800/50 p-5 border-l-4 border-orange-400 bg-white shadow-md">
       <div className="flex">
         <input
           onChange={onTitleChange}
-          placeholder="Form Title"
+          placeholder={placeholder}
           value={field.data.title}
           className={classNames(
             {
@@ -31,12 +36,21 @@ const TitleBuilder: FC<Props> = ({ field }) => {
           <FieldControls fieldId={field.id} />
         )}
       </div>
-      <textarea
-        onChange={onDescChange}
-        value={field.data.description}
-        className="text-xl bg-transparent placeholder:dark:text-zinc-400 dark:text-zinc-300  w-full resize-none"
-        placeholder="Form Description"
+      {showDesc  ? (
+        <textarea
+          onChange={onDescChange}
+          value={field.data.description}
+          className="text-lg bg-zinc-100/75 dark:bg-zinc-800 py-1 placeholder:dark:text-zinc-500 dark:text-zinc-300 text-zinc-600  w-full resize-none"
+          placeholder={descPlaceholder}
         />
+      ) : (
+
+        <button onClick={() => setShowDesc(true)} className="space-x-2 text-orange-400">
+          <FontAwesomeIcon icon={faPlus} />
+          <span>Add description</span>
+        </button>
+      )}
+      
     </div>
   )
 }

@@ -38,7 +38,7 @@ const makeDefaultField = (formId: string, type: FieldType, options?: { index: nu
       return [{
         ...defaultShared,
         type,
-        data: { label: `Untitled ${type}` }
+        data: { label: `Untitled ${type.toLocaleLowerCase()}` }
       }]
     case FieldType.MULTIPLE_CHOICE:
       return [{

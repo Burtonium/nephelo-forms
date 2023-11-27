@@ -7,6 +7,11 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <div className="content-grid my-10">
       {form?.fields.map((f) => (<FieldDisplay key={f.id} field={f} />))}
+      <div className="my-10 text-center">
+        <button className="btn">
+          Submit
+        </button>
+      </div>
     </div>
   )
 }
