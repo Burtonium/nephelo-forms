@@ -123,10 +123,17 @@ const FormBuilder = () => {
   }, [createForm, fields, form, router]);
 
   return (
-    <div className='relative form-builder grid gap-4 grid-cols-[1fr_16rem] wrapper my-10'>
+    <div className='relative form-builder grid gap-4 md:grid-cols-[1fr_16rem] wrapper my-10'>
       <Spinner loading={createForm.isLoading} />
       <div className="relative">
         <FieldBuilders />
+        <div className="block lg:hidden">
+            <FieldCreatorButton type={FieldType.TITLE}>Title</FieldCreatorButton>
+            <FieldCreatorButton type={FieldType.LABEL}>Label</FieldCreatorButton>
+            <FieldCreatorButton type={FieldType.MULTIPLE_CHOICE}>Multiple Choice</FieldCreatorButton>
+            <FieldCreatorButton type={FieldType.QUESTION}>Question</FieldCreatorButton>
+            <FieldCreatorButton type={FieldType.UNIT}>Unit</FieldCreatorButton>
+        </div>
         <div className="text-center mt-10">
           <button
             onClick={onSubmit}
@@ -137,13 +144,13 @@ const FormBuilder = () => {
         </div>
       </div>
       <div className="hidden lg:block">
-        <ol className="space-y-2 sticky top-5">
+        <div className="space-y-2 sticky top-5 w-full">
           <FieldCreatorButton type={FieldType.TITLE}>Title</FieldCreatorButton>
           <FieldCreatorButton type={FieldType.LABEL}>Label</FieldCreatorButton>
           <FieldCreatorButton type={FieldType.MULTIPLE_CHOICE}>Multiple Choice</FieldCreatorButton>
           <FieldCreatorButton type={FieldType.QUESTION}>Question</FieldCreatorButton>
           <FieldCreatorButton type={FieldType.UNIT}>Unit</FieldCreatorButton>
-        </ol>
+        </div>
       </div>
     </div>
   )
