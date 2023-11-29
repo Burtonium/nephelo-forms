@@ -7,14 +7,27 @@ body {
 }
 
 input {
-  @apply dark:text-zinc-100 text-zinc-700 py-2 border-b-2 !outline-none
-   focus:border-orange-400 dark:border-zinc-600 
-   border-zinc-200 placeholder:text-zinc-700 dark:placeholder:text-zinc-400 
-   bg-zinc-100 block w-full;
+  @apply py-2  !outline-none
+   focus:border-orange-400 dark:border-zinc-600 border-b-2
+   border-zinc-200  
+   bg-zinc-100 block w-full
+   bg-transparent
 }
 
 textarea {
+  @apply !outline-none bg-zinc-50/50 dark:bg-zinc-800/25;
+}
 
+input, textarea {
+  @apply placeholder:text-zinc-600 dark:placeholder:text-zinc-400 text-zinc-700 dark:text-zinc-100
+}
+
+.wrapper {
+  @apply mx-auto max-w-6xl px-3;
+}
+
+.wrapper-sm {
+  @apply mx-auto max-w-4xl px-3;
 }
 
 .content-grid {

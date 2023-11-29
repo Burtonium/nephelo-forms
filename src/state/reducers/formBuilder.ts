@@ -4,13 +4,12 @@ import { sortBy } from 'lodash';
 import { type FormInsert, type FieldInsert } from 'prisma/zod';
 import { v4 as uuid } from 'uuid';
 
-
 export type BuilderState = {
   form: FormInsert,
   fields: FieldInsert[];
 };
 
-const makeDefaultField = (formId: string, type: FieldType, options?: { index: number }): FieldInsert[] => {
+const makeDefaultField = (type: FieldType, options?: { index: number }): FieldInsert[] => {
   const id = uuid();
 
   const defaultShared = {
@@ -79,8 +78,7 @@ const makeDefaultField = (formId: string, type: FieldType, options?: { index: nu
 
 
 const makeDefaultState = () => {
-  const formId = uuid();
-  const [titleField] = makeDefaultField(formId, FieldType.MAIN_TITLE) as [FieldInsert];
+  const [titleField] = makeDefaultField(FieldType.MAIN_TITLE) as [FieldInsert];
 
   return {
     form: {
@@ -98,14 +96,14 @@ const formStateSlice = createSlice({
   reducers: {
     createDefaultField: (state, { payload: type }: PayloadAction<FieldType>) => {
       const index = Math.max(...state.fields.map((f) => f.index)) + 1;
-      const fields = makeDefaultField(state.form.id, type, { index });
+      const fields = makeDefaultField(type, { index });
 
       return {
         ...state,
         fields: fields.concat(state.fields),
       };
     },
-    createField: (state, { payload: field }: PayloadAction<Omit<FieldInsert, 'id'>>) => {
+    createField: (state, { payload: field }: PayloadAction<FieldInsert>) => {
       const constructed = {
         ...field,
         id: uuid()
@@ -160,6 +158,13 @@ const formStateSlice = createSlice({
       };
     },
     reset: () => makeDefaultState(),
+    updateUser: (state, { payload: id }: PayloadAction<string>) => ({
+      ...state,
+      form: {
+        ...state.form,
+        createdById: id
+      }
+    })
   }
 });
 
@@ -167,3 +172,4 @@ export const { getInitialState, actions } = formStateSlice;
 
 export type BuilderActions = ReturnType<typeof actions[keyof typeof actions]>;
 export const reducer = formStateSlice.reducer as Reducer<BuilderState, BuilderActions>;
+export type { FormInsert, FieldInsert } from 'prisma/zod';

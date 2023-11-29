@@ -7,7 +7,9 @@ export const UserModel = z.object({
   email: z.string().nullish(),
   emailVerified: z.date().nullish(),
   image: z.string().nullish(),
-})
+});
+
+export type User = z.infer<typeof UserModel>;
 
 export interface CompleteUser extends z.infer<typeof UserModel> {
   accounts: CompleteAccount[]

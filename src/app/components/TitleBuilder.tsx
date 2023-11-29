@@ -40,13 +40,13 @@ const TitleBuilder: FC<Props> = ({ field }) => {
         <textarea
           onChange={onDescChange}
           value={field.data.description}
-          className="text-lg bg-zinc-100/75 dark:bg-zinc-800 py-1 placeholder:dark:text-zinc-500 dark:text-zinc-300 text-zinc-600  w-full resize-none"
+          className="text-lg py-1  text-zinc-600  w-full resize-none"
           placeholder={descPlaceholder}
         />
       ) : (
 
-        <button onClick={() => setShowDesc(true)} className="space-x-2 text-orange-400">
-          <FontAwesomeIcon icon={faPlus} />
+        <button onClick={() => setShowDesc(true)} className="flex items-center space-x-2 text-orange-400">
+          <FontAwesomeIcon className="w-4 h-4" icon={faPlus} />
           <span>Add description</span>
         </button>
       )}

@@ -1,10 +1,10 @@
 import { type FC } from "react";
-import type { FieldInsert } from "prisma/zod";
 import LabelBuilder from "./LabelBuilder";
 import TitleBuilder from "./TitleBuilder";
 import QuestionBuilder from "./QuestionBuilder";
 import MultipleChoiceBuilder from "./MultipleChoiceBuilder";
 import UnitBuilder from "./UnitBuilder";
+import type { FieldInsert } from "~/state/reducers/formBuilder";
 
 const FieldBuilder: FC<{ field: FieldInsert }> = ({ field }) => {
   switch (field.type) {

@@ -1,5 +1,5 @@
 'use client';
-import { useState, type FC, type PropsWithChildren, useCallback } from "react";
+import { useState, type FC, type PropsWithChildren, useCallback, useEffect, useId } from "react";
 import { DndProvider, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useRouter } from 'next/navigation'
@@ -9,13 +9,13 @@ import { FieldType } from "@prisma/client";
 import { useDrag } from 'react-dnd'
 import classNames from "classnames";
 
-import { actions } from "~/state/reducers/formBuilder";
+import { type FieldInsert, actions } from "~/state/reducers/formBuilder";
 import { FormBuilderContextProvider } from "./FormBuilderContext";
 import FieldBuilder from "./FieldBuilder";
 import useFormBuilder from "~/hooks/useFormBuilder";
-import { type FieldInsert } from "prisma/zod";
 import { api } from "~/trpc/react";
 import Spinner from "./Spinner";
+import { SessionProvider, useSession } from "next-auth/react";
 
 const FieldCreatorButton: FC<PropsWithChildren<{ type: FieldType }>> = ({ children, type }) => {
   const { dispatch } = useFormBuilder();
@@ -35,7 +35,7 @@ const FieldCreatorButton: FC<PropsWithChildren<{ type: FieldType }>> = ({ childr
 
 const DropZone: FC<PropsWithChildren & { index: number }> = ({ children, index }) => {
   const [hoveringField, setHoveringField] = useState<FieldInsert>();
-  const { dispatch,  } = useFormBuilder();
+  const { dispatch } = useFormBuilder();
 
   const reorderHoveringField = useCallback(() => {
     if (hoveringField) {
@@ -106,16 +106,24 @@ const FieldBuilders = () => {
 
 const FormBuilder = () => {
   const router = useRouter();
-  const { form, fields } = useFormBuilder();
+  const { form, fields, dispatch } = useFormBuilder();
+  const { data: session, status } = useSession();
   const createForm = api.form.create.useMutation();
 
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      dispatch(actions.updateUser(session.user.id))
+    }
+  }, [dispatch, session?.user.id, status])
+
   const onSubmit = useCallback(async () => {
-    const f = await createForm.mutateAsync({ form, fields })
+    const f = await createForm.mutateAsync({ form, fields });
     router.push(`/forms/${f.id}`);
   }, [createForm, fields, form, router]);
 
   return (
-    <div className='relative content-grid my-10'>
+    <div className='relative form-builder grid gap-4 grid-cols-[1fr_16rem] wrapper my-10'>
       <Spinner loading={createForm.isLoading} />
       <div className="relative">
         <FieldBuilders />
@@ -128,7 +136,7 @@ const FormBuilder = () => {
           </button>
         </div>
       </div>
-      <div className="content-end w-64 hidden lg:block pr-3">
+      <div className="hidden lg:block">
         <ol className="space-y-2 sticky top-5">
           <FieldCreatorButton type={FieldType.TITLE}>Title</FieldCreatorButton>
           <FieldCreatorButton type={FieldType.LABEL}>Label</FieldCreatorButton>
@@ -144,11 +152,13 @@ const FormBuilder = () => {
 
 const FormBuilderContainer = () => {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <FormBuilderContextProvider>
-        <FormBuilder />
-      </FormBuilderContextProvider>
-    </DndProvider>
+    <SessionProvider>
+      <DndProvider backend={HTML5Backend}>
+        <FormBuilderContextProvider>
+          <FormBuilder />
+        </FormBuilderContextProvider>
+      </DndProvider>
+    </SessionProvider>
   )
 }
 

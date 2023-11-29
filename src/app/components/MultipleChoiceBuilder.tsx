@@ -54,7 +54,7 @@ const MultipleChoiceBuilder: FC<Props> = ({ field }) => {
           <ChoiceBuilder key={c.id} field={c} />
         ))}
         <button onClick={addChoice} className="space-x-2 text-orange-400">
-          <FontAwesomeIcon icon={faPlus} />
+          <FontAwesomeIcon className="w-4 h-4" icon={faPlus} />
           <span>Add choice</span>
         </button>
       </div>

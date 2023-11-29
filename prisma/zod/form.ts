@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { type CompleteField, RelatedFieldModel, type CompleteUser, RelatedUserModel } from "./index"
+import { type CompleteField, RelatedFieldModel, type User, UserModel } from "./index"
 
 export const FormInsertModel = z.object({
   id: z.string(),
@@ -17,7 +17,7 @@ export const FormModel = FormInsertModel.extend({
 
 export interface CompleteForm extends z.infer<typeof FormModel> {
   fields: CompleteField[]
-  createdBy?: CompleteUser | null
+  createdBy?: User | null
 }
 
 /**
@@ -27,5 +27,5 @@ export interface CompleteForm extends z.infer<typeof FormModel> {
  */
 export const RelatedFormModel: z.ZodSchema<CompleteForm> = z.lazy(() => FormModel.extend({
   fields: RelatedFieldModel.array(),
-  createdBy: RelatedUserModel.nullish(),
+  createdBy: UserModel.nullish(),
 }))

@@ -1,9 +1,12 @@
-import FormBuilder from './components/FormBuilder';
+import dynamic from 'next/dynamic';
 
-export default function Home() {
+const Builder = dynamic(() => import('./components/FormBuilder'), { ssr: false });
+
+export default function Home({ }) {
+
   return (
     <main>
-      <FormBuilder />
+      <Builder />
     </main>
   )
 }
