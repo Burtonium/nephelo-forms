@@ -103,7 +103,7 @@ const formStateSlice = createSlice({
         fields: fields.concat(state.fields),
       };
     },
-    createField: (state, { payload: field }: PayloadAction<FieldInsert>) => {
+    createField: (state, { payload: field }: PayloadAction<Omit<FieldInsert, 'id'>>) => {
       const constructed = {
         ...field,
         id: uuid()

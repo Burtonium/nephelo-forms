@@ -113,7 +113,7 @@ export default function Navbar({ user }: { user: User | null }) {
                               <Image className='rounded-full' width={32} height={32} alt="Profile picture" src={user.image} />
                             </div>
                           ): (
-                            <FontAwesomeIcon icon={faUser} />
+                            <FontAwesomeIcon className='w-6 h-6' icon={faUser} />
                           )}
                         </Menu.Button>
                       </div>

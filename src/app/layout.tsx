@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import { db } from "~/server/db";
 import { getServerAuthSession } from "~/server/auth";
 import { CookiesProvider } from 'next-client-cookies/server';
+
 const oswald = Oswald({
   subsets: ["latin"],
   variable: "--font-title",
