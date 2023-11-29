@@ -40,7 +40,7 @@ export default function DarkModeToggle() {
           )}
           aria-hidden="true"
         >
-          <FontAwesomeIcon className="text-yellow-300 w-4 h-4" icon={faSun} />
+          <FontAwesomeIcon className="text-orange-300 w-4 h-4" icon={faSun} />
         </span>
         <span
           className={classNames(
