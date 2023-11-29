@@ -123,11 +123,11 @@ const FormBuilder = () => {
   }, [createForm, fields, form, router]);
 
   return (
-    <div className='relative form-builder grid gap-4 md:grid-cols-[1fr_16rem] wrapper my-10'>
+    <div className='relative form-builder md:grid gap-4 md:grid-cols-[1fr_16rem] wrapper my-10'>
       <Spinner loading={createForm.isLoading} />
       <div className="relative">
         <FieldBuilders />
-        <div className="block lg:hidden">
+        <div className="block md:hidden">
             <FieldCreatorButton type={FieldType.TITLE}>Title</FieldCreatorButton>
             <FieldCreatorButton type={FieldType.LABEL}>Label</FieldCreatorButton>
             <FieldCreatorButton type={FieldType.MULTIPLE_CHOICE}>Multiple Choice</FieldCreatorButton>
@@ -143,7 +143,7 @@ const FormBuilder = () => {
           </button>
         </div>
       </div>
-      <div className="hidden lg:block">
+      <div className="hidden md:block">
         <div className="space-y-2 sticky top-5 w-full">
           <FieldCreatorButton type={FieldType.TITLE}>Title</FieldCreatorButton>
           <FieldCreatorButton type={FieldType.LABEL}>Label</FieldCreatorButton>
