@@ -30,6 +30,10 @@ input, textarea {
   @apply mx-auto max-w-4xl px-3;
 }
 
+.wrapper-xs {
+  @apply mx-auto max-w-2xl px-3;
+}
+
 .content-grid {
   --max-content-width: 60ch;
   --breakout-difference: 0.2;

@@ -7,6 +7,8 @@ export const UserModel = z.object({
   email: z.string().nullish(),
   emailVerified: z.date().nullish(),
   image: z.string().nullish(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
 });
 
 export type User = z.infer<typeof UserModel>;

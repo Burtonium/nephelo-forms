@@ -110,7 +110,6 @@ const FormBuilder = () => {
   const { data: session, status } = useSession();
   const createForm = api.form.create.useMutation();
 
-
   useEffect(() => {
     if (status === 'authenticated') {
       dispatch(actions.updateUser(session.user.id))
