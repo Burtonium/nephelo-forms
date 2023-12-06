@@ -39,7 +39,7 @@ export const formRouter = createTRPCRouter({
         },
       });
 
-      return RelatedFormModel.parse(form);
+      return form ? RelatedFormModel.parse(form) : form;
     }),
   fetchAll: publicProcedure.query(({ ctx }) => {
     return ctx.db.form.findMany({

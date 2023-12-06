@@ -31,19 +31,48 @@ model Field {
   parentId String?
   children Field[]   @relation("Parent")
   parent   Field?    @relation("Parent", fields: [parentId], references: [id])
-
-  @@index([type])
+  entries  FieldEntry[]
 }
 
 model Form {
-  id        String   @id @default(cuid())
-  fields    Field[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  createdBy   User?   @relation(fields: [createdById], references: [id])
-  createdById String?
+  id           String   @id @default(cuid())
+  fields       Field[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  entries      FormEntry[]
+  createdBy    User?   @relation(fields: [createdById], references: [id])
+  createdById  String?
 }
+
+model FormEntry {
+  id           String   @id @default(cuid())
+  formId       String
+  form         Form      @relation(fields: [formId], references: [id])
+  fieldEntries FieldEntry[]
+  user         User?     @relation(fields: [userId], references: [id])
+  userId       String?
+  createdAt DateTime     @default(now())
+}
+
+enum FieldEntryType {
+  NUMERIC
+  STRING
+  BOOLEAN
+}
+
+model FieldEntry {
+  id        Int         @id @default(autoincrement())
+  type      FieldEntryType
+  entryId   String
+  entry     FormEntry  @relation(fields: [entryId], references: [id])
+  fieldId   String 
+  field     Field     @relation(fields: [fieldId], references: [id])
+  value     String?  // @db.Text
+  decimal   Decimal?
+
+  @@unique([fieldId, entryId])
+}
+
 
 // Necessary for Next auth
 model Account {
@@ -81,7 +110,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   forms         Form[]
-
+  entries       FormEntry[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

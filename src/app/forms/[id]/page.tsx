@@ -2,11 +2,21 @@ import { api } from "~/trpc/server"
 import FieldDisplay from "./components/FieldDisplay";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from 'next/navigation'
 import dayjs from "src/plugins/dayjs";
+import { EntryBuilderContextProvider } from "~/contexts/EntryBuilderContext";
+import { getServerAuthSession } from "~/server/auth";
+import EntrySubmitButton from "./components/EntrySubmitButton";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const form = await api.form.fetch.query({ id: params.id });
+  const session = await getServerAuthSession();
 
+
+  if (!form) {
+    return notFound();
+  }
+  
   return (
     <div className="my-10 wrapper-sm space-y-6 form-display">
       <div className="">
@@ -26,12 +36,14 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
         )}
       </div>
-      {form?.fields.map((f) => (<FieldDisplay key={f.id} field={f} />))}
-      <div className="my-10 text-center">
-        <button className="btn">
-          Submit
-        </button>
-      </div>
+      <EntryBuilderContextProvider formId={form.id} userId={session?.user.id}>
+        <>
+          {form?.fields.map((f) => (<FieldDisplay key={f.id} field={f} />))}
+          <div className="my-10 text-center">
+            <EntrySubmitButton />
+          </div>
+        </>
+      </EntryBuilderContextProvider>
     </div>
   )
 }

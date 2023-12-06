@@ -23,8 +23,7 @@ export default function Navbar({ user }: { user: User | null }) {
             <div className="flex h-16 justify-between">
               <div className="flex items-center justify-center">
                 <div className="flex">
-                  <Link
-                    href="/">
+                  <Link href="/">
                     <img
                       height={64}
                       className="h-8 w-auto"
@@ -182,7 +181,13 @@ export default function Navbar({ user }: { user: User | null }) {
               ))}
             </div> */}
             <div className="border-gray-700 pb-3 pt-4">
-              <div >
+              <div>
+                <Disclosure.Button
+                  onClick={() => signIn('google')}
+                  className="block px-5 py-3 w-full text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white text-left"
+                >
+                  Sign in with Google
+                </Disclosure.Button>
                 {user && (
                   <>
                     <Disclosure.Button

@@ -2,11 +2,11 @@
 import { useCallback, useState } from 'react';
 import { Switch } from '@headlessui/react'
 import classNames from 'classnames';
-import { setTheme } from '../theme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-
 import { useCookies } from 'next-client-cookies';
+
+import { setTheme } from '../theme';
 
 export default function DarkModeToggle() {
   const cookies = useCookies();

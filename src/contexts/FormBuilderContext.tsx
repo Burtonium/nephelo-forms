@@ -1,3 +1,4 @@
+'use client';
 import { type FC, type PropsWithChildren, createContext, type Dispatch, useEffect } from "react";
 import { useReducer } from "react";
 import { type BuilderState, type BuilderActions, getInitialState, reducer, actions } from "~/state/reducers/formBuilder";
