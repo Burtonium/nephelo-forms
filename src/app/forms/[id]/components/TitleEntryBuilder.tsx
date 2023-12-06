@@ -9,7 +9,7 @@ type Props = {
 
 const TitleDisplay: FC<Props> = ({ field }) => {
   return (
-    <div className="space-y-2 dark:bg-zinc-800/50 p-5 border-l-4 border-orange-400 bg-white shadow-md">
+    <div data-field-id={field.id}  className="space-y-2 dark:bg-zinc-800/50 p-5 border-l-4 border-orange-400 bg-white shadow-md">
       <h1 className={classNames(
         {
           "text-4xl": field.type === FieldType.MAIN_TITLE,

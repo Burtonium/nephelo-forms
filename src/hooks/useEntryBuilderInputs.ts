@@ -39,8 +39,6 @@ export const useMultipleChoice = (fieldIds: string[]) => {
     [entries, fieldIds]
   );
 
-  console.log(entries);
-
   return [selected, makeOnChange] as [string[], typeof makeOnChange]
 }
 

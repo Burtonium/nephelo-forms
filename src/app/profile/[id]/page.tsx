@@ -1,14 +1,12 @@
 
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getServerAuthSession } from "~/server/auth";
 import { db } from "~/server/db";
 import dayjs from 'src/plugins/dayjs';
 
 
-export default async function Profile() {
-  const session = await getServerAuthSession();
-  const user = session && await db.user.findFirst({ where: { id: session?.user.id } })
+export default async function Profile({ params }: { params: { id: string } }) {
+  const user = await db.user.findFirst({ where: { id: params.id } })
 
   if (!user) {
     notFound();

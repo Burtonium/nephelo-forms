@@ -7,12 +7,12 @@ type Props = {
   field: CompleteField;
 }
 
-const CheckboxDisplay: FC<Props> = ({ field }) => {
+const CheckboxEntryBuilder: FC<Props> = ({ field }) => {
   const childrenIds = useMemo(() => field.children.map((c) => c.id), [field.children]);
   const [selected, makeOnChange] = useMultipleChoice(childrenIds);
 
   return (
-    <div className=" dark:bg-zinc-800/50 space-y-5 p-5 border-l-4 border-orange-400 bg-white shadow-md">
+    <div data-field-id={field.id} className=" dark:bg-zinc-800/50 space-y-5 p-5 border-l-4 border-orange-400 bg-white shadow-md">
       <div className="text-lg">
         {field.data.label}
       </div>
@@ -33,4 +33,4 @@ const CheckboxDisplay: FC<Props> = ({ field }) => {
   )
 }
 
-export default CheckboxDisplay;
+export default CheckboxEntryBuilder;

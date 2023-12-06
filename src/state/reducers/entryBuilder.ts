@@ -29,7 +29,7 @@ const entryStateSlice = createSlice({
 
       return {
         ...state,
-        entries: [
+        entries: entryIndex === -1 ? state.entries.concat(entry) : [
           ...state.entries.slice(0, entryIndex),
           ...state.entries.slice(entryIndex + 1),
           ...[entry]

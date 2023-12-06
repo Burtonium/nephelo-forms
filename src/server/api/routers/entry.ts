@@ -1,5 +1,5 @@
 import { FieldEntryUnionModel } from "prisma/zod/fieldEntry";
-import { FormEntryInsert } from "prisma/zod/formEntry";
+import { FormEntryInsert, RelatedFormEntryModel } from "prisma/zod/formEntry";
 import { z } from "zod";
 
 import {
@@ -25,15 +25,26 @@ export const entryRouter = createTRPCRouter({
   fetch: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      return ctx.db.formEntry.findFirst({
+      const result = await ctx.db.formEntry.findFirst({
         include: {
           fieldEntries: true,
+          form: {
+            include: {
+              fields: {
+                include: {
+                  children: true,
+                }
+              },
+            }
+          },
           user: true,
         },
         where: {
           id: input.id
         },
       });
+
+      return result && RelatedFormEntryModel.parse(result);
     }),
   fetchAll: publicProcedure.query(({ ctx }) => {
     return ctx.db.formEntry.findMany({

@@ -17,7 +17,7 @@ export const FormEntryModel = FormEntryInsert.extend({
 export interface CompleteFormEntry extends z.infer<typeof FormEntryModel> {
   form: CompleteForm
   user?: User | null,
-  entries: FieldEntry[],
+  fieldEntries: FieldEntry[],
 }
 
 /**
@@ -26,7 +26,7 @@ export interface CompleteFormEntry extends z.infer<typeof FormEntryModel> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const RelatedFormEntryModel: z.ZodSchema<CompleteFormEntry> = z.lazy(() => FormEntryModel.extend({
-  entries: FieldEntryUnionModel.array(),
+  fieldEntries: FieldEntryUnionModel.array(),
   user: UserModel.nullish(),
   form: RelatedFormModel,
 }))
