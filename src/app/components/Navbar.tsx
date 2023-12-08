@@ -10,9 +10,9 @@ import Image from 'next/image';
 import { signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
 
-// const navigation = [
-//   { name: 'Forms', href: '/forms', current: false  }
-// ]
+const navigation = [
+  { name: 'Forms', href: '/forms', current: false  }
+]
 
 export default function Navbar({ user }: { user: User | null }) {
   return (
@@ -33,7 +33,7 @@ export default function Navbar({ user }: { user: User | null }) {
                   </Link>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:items-center">
-                  {/* {navigation.map((item) => (
+                  {navigation.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
@@ -45,7 +45,7 @@ export default function Navbar({ user }: { user: User | null }) {
                     >
                       {item.name}
                     </a>
-                  ))} */}
+                  ))}
                 </div>
               </div>
               <div className="flex items-center md:hidden">

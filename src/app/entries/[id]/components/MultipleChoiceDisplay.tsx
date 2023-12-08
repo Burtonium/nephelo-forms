@@ -11,7 +11,10 @@ type Props = {
 
 const MultipleChoiceDisplay: FC<Props> = ({ field }) => {
   const choices = useMultipleChoiceDisplay(field.id);
-  const selected = useMemo(() => choices.filter((c) => c.selected), []);
+  const selected = useMemo(
+    () => choices.filter((c) => c.selected),
+    [choices]
+  );
 
   return (
     <div className=" dark:bg-zinc-800/50 space-y-2 p-5 border-l-4 border-orange-400 bg-white shadow-md">
