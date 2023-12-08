@@ -13,7 +13,7 @@ const units: Record<string, string[]> = {
   metric: ['m', 'km', 'mm', 'cm']
 }
 
-const NumberBuilder: FC<Props> = ({ field }) => {
+const UnitBuilder: FC<Props> = ({ field }) => {
   const onLabelChange = useFieldBuilderInput(field.id, 'label');
   const onUnitChange = useFieldBuilderInput(field.id, 'unit');
   const onDenomChange = useFieldBuilderInput(field.id, 'denomination');
@@ -58,4 +58,4 @@ const NumberBuilder: FC<Props> = ({ field }) => {
   )
 }
 
-export default NumberBuilder;
+export default UnitBuilder;

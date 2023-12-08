@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import { db } from "~/server/db";
 import { getServerAuthSession } from "~/server/auth";
 import { CookiesProvider } from 'next-client-cookies/server';
+import { useRouter } from "next/router";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -36,7 +37,7 @@ export default async function RootLayout({
 }) {
   const theme = cookies().get('theme')?.value;
   const session = await getServerAuthSession();
-  const user = session && await db.user.findFirst({ where: { id: session?.user.id } })
+  const user = session && await db.user.findFirst({ where: { id: session?.user.id } });
 
   return (
     <html className={classNames({ dark: theme === 'dark' })} lang="en">

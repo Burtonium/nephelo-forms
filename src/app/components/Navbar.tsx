@@ -1,5 +1,5 @@
 'use client';
-import { Fragment } from 'react'
+import { Fragment, useMemo } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose, faBars, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -9,27 +9,28 @@ import type { User } from '@prisma/client';
 import Image from 'next/image';
 import { signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import Icon from './Logo';
 
-const navigation = [
-  { name: 'Forms', href: '/forms', current: false  }
+const routes = [
+  { name: 'Builder', href: '/', current: false },
+  { name: 'Forms', href: '/forms', current: false },
 ]
 
 export default function Navbar({ user }: { user: User | null }) {
+  const pathname = usePathname();
+  const navigation = useMemo(() => routes.map((r) => ({ ...r, current: r.href === pathname })), [pathname])
+  
   return (
     <Disclosure as="nav" className="bg-zinc-800 text-zinc-300">
       {({ open }) => (
         <>
           <div className="wrapper">
             <div className="flex h-16 justify-between">
-              <div className="flex items-center justify-center">
-                <div className="flex">
+              <div className="flex items-stretch justify-center">
+                <div className="flex items-center">
                   <Link href="/">
-                    <img
-                      height={64}
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=orange&shade=400"
-                      alt="Your Company"
-                    />
+                    <Icon />
                   </Link>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:items-center">
@@ -38,7 +39,7 @@ export default function Navbar({ user }: { user: User | null }) {
                       key={item.name}
                       href={item.href}
                       className={classNames(
-                        item.current ? ' text-orange-400 bg-zinc-900/50' : 'text-gray-300 hover:text-white hover:bg-orange-400',
+                        item.current ? ' text-orange-400 bg-zinc-900/50' : 'text-zinc-200 hover:text-white hover:bg-orange-400',
                         'h-full flex items-center text-sm font-semibold px-6'
                       )}
                       aria-current={item.current ? 'page' : undefined}

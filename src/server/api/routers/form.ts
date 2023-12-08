@@ -44,7 +44,8 @@ export const formRouter = createTRPCRouter({
   fetchAll: publicProcedure.query(({ ctx }) => {
     return ctx.db.form.findMany({
       include: {
-        fields: true 
+        fields: true,
+        createdBy: true
       },
       take: 10,
       orderBy: { createdAt: "desc" },

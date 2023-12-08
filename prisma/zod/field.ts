@@ -9,7 +9,7 @@ export const FieldModelInsert = z.object({
   parentId: z.string().nullish(),
 });
 
-const FieldModel = FieldModelInsert.extend({
+export const FieldModel = FieldModelInsert.extend({
   formId: z.string(),
 })
 
