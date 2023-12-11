@@ -16,8 +16,14 @@ const NumberDisplay: FC<Props> = ({ field }) => {
       <label htmlFor="number-input" className="block mb-2 text-lg">
         {field.data.label}
       </label>
-      <p className="dark:bg-zinc-900 bg-zinc-100 p-2">{value?.toString()} {field.data.denomination ?? ''}</p>
-    </div>
+        <p className="dark:bg-zinc-900 bg-zinc-100 p-2">
+          {entry?.value !== undefined ? (
+            <span>{value?.toString()} {field.data.denomination ?? ''}</span>
+          ) : (
+            <span className="text-red-500">No answer provided</span>
+          )}
+        </p>
+      </div>
   )
 }
 

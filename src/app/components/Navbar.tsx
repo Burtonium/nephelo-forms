@@ -11,9 +11,10 @@ import { signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Icon from './Logo';
+import { router } from '@trpc/server';
 
 const routes = [
-  { name: 'Builder', href: '/', current: false },
+  { name: 'Builder', href: '/builder', current: false },
   { name: 'Forms', href: '/forms', current: false },
 ]
 
@@ -165,8 +166,8 @@ export default function Navbar({ user }: { user: User | null }) {
             </div>
           </div>
           <Disclosure.Panel className="md:hidden">
-            {/* <div className="pb-3 pt-2">
-              {navigation.map((item) => (
+            <div className="pb-3 pt-2">
+              {routes.map((item) => (
                 <Disclosure.Button
                   key={item.name}
                   as="a"
@@ -180,15 +181,17 @@ export default function Navbar({ user }: { user: User | null }) {
                   {item.name}
                 </Disclosure.Button>
               ))}
-            </div> */}
+            </div>
             <div className="border-gray-700 pb-3 pt-4">
               <div>
-                <Disclosure.Button
-                  onClick={() => signIn('google')}
-                  className="block px-5 py-3 w-full text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white text-left"
-                >
-                  Sign in with Google
-                </Disclosure.Button>
+                {!user && (
+                  <Disclosure.Button
+                    onClick={() => signIn('google')}
+                    className="block px-5 py-3 w-full text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white text-left"
+                  >
+                    Sign in with Google
+                  </Disclosure.Button>
+                )}
                 {user && (
                   <>
                     <Disclosure.Button

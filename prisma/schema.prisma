@@ -64,9 +64,9 @@ model FieldEntry {
   id        Int         @id @default(autoincrement())
   type      FieldEntryType
   entryId   String
-  entry     FormEntry  @relation(fields: [entryId], references: [id])
+  entry     FormEntry  @relation(fields: [entryId], references: [id], onDelete: Cascade)
   fieldId   String 
-  field     Field     @relation(fields: [fieldId], references: [id])
+  field     Field     @relation(fields: [fieldId], references: [id], onDelete: Cascade)
   value     String?  // @db.Text
   decimal   Decimal?
 
@@ -111,6 +111,7 @@ model User {
   sessions      Session[]
   forms         Form[]
   entries       FormEntry[]
+  badges        UserBadge[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -121,4 +122,19 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum Award {
+  FIRST_100_USER
+  FIRST_1000_USER
+}
+
+model UserBadge {
+    id          Int         @id @default(autoincrement())
+    user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId      String
+    award       Award
+
+
+  @@unique([award, userId])
 }

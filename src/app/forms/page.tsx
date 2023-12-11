@@ -21,10 +21,10 @@ const FormRow: FC<{ form: Form }> = ({ form }) => {
       <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8 text-lg font-semibold ">
         {title}
       </td>
-      <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
+      <td className="py-4 pl-0 pr-4 sm:pr-8">
         <UserDisplay user={form.createdBy} />
       </td>
-      <td className="hidden py-4 pl-0 pr-4 text-sm leading-6 dark:text-gray-400 sm:table-cell sm:pr-6 lg:pr-8">
+      <td className="py-4 pl-0 pr-4 text-sm leading-6 dark:text-gray-400 sm:pr-6 lg:pr-8">
         <time dateTime={form.createdAt.toISOString()}>
           {dayjs().to(form.createdAt)}
         </time>

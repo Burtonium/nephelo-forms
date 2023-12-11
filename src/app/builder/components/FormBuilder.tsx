@@ -10,11 +10,11 @@ import { useDrag } from 'react-dnd'
 import classNames from "classnames";
 
 import { type FieldInsert, actions } from "~/state/reducers/formBuilder";
-import { FormBuilderContextProvider } from "../../contexts/FormBuilderContext";
+import { FormBuilderContextProvider } from "../../../contexts/FormBuilderContext";
 import FieldBuilder from "./FieldBuilder";
 import useFormBuilder from "~/hooks/useFormBuilder";
 import { api } from "~/trpc/react";
-import Spinner from "./Spinner";
+import Spinner from "../../components/Spinner";
 import { SessionProvider, useSession } from "next-auth/react";
 
 const FieldCreatorButton: FC<PropsWithChildren<{ type: FieldType }>> = ({ children, type }) => {

@@ -1,6 +1,6 @@
 const Icon = () => (
   <div className="p-2 space-x-1 flex items-center text-white hover:text-orange-400">
-    <svg className="w-10 h-10 mt-2" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 90 90" shapeRendering="geometricPrecision" textRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd">
+    <svg className="w-10 h-10 mt-2" width={32} xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 90 90" shapeRendering="geometricPrecision" textRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd">
       <g><path fill="currentColor" d="M 45.5,8.5 C 62.0444,6.07443 70.7111,13.0744 71.5,29.5C 81.9129,31.6368 85.7462,37.9701 83,48.5C 81.5,52 79,54.5 75.5,56C 70.1358,56.1705 64.8025,56.6705 59.5,57.5C 60.8333,58.8333 60.8333,60.1667 59.5,61.5C 45.5,62.8333 31.5,62.8333 17.5,61.5C 16.1667,60.1667 16.1667,58.8333 17.5,57.5C 24.4764,56.6689 31.4764,56.1689 38.5,56C 41.1667,54.3333 41.1667,52.6667 38.5,51C 26.4861,50.8326 14.4861,50.3326 2.5,49.5C 1.16667,48.1667 1.16667,46.8333 2.5,45.5C 10.861,44.8055 19.1943,44.1389 27.5,43.5C 28.8304,41.6531 28.497,40.1531 26.5,39C 19.5,38.6667 12.5,38.3333 5.5,38C 8.02738,32.9567 12.0274,30.1234 17.5,29.5C 19.4651,19.8974 25.4651,15.5641 35.5,16.5C 38.1345,12.863 41.4679,10.1963 45.5,8.5 Z"/></g>
       <g><path fill="currentColor" d="M 5.5,68.5 C 14.5246,68.1685 23.5246,68.5018 32.5,69.5C 33.8333,70.8333 33.8333,72.1667 32.5,73.5C 23.5,74.8333 14.5,74.8333 5.5,73.5C 4.46471,71.8716 4.46471,70.205 5.5,68.5 Z"/></g>
     </svg>
