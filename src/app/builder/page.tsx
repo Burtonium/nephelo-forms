@@ -6,8 +6,6 @@ export default function Home() {
   const state = makeDefaultState();
 
   return (
-    <main>
-      <FormBuilder state={state} />
-    </main>
+    <FormBuilder state={state} />
   )
 }

@@ -9,7 +9,6 @@ import Navbar from "./components/Navbar";
 import { db } from "~/server/db";
 import { getServerAuthSession } from "~/server/auth";
 import { CookiesProvider } from 'next-client-cookies/server';
-import { useRouter } from "next/router";
 
 const oswald = Oswald({
   subsets: ["latin"],
