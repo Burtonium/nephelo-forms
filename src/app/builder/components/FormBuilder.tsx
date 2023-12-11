@@ -9,13 +9,14 @@ import { FieldType } from "@prisma/client";
 import { useDrag } from 'react-dnd'
 import classNames from "classnames";
 
-import { type FieldInsert, actions } from "~/state/reducers/formBuilder";
+import { type FieldInsert, actions, BuilderState } from "~/state/reducers/formBuilder";
 import { FormBuilderContextProvider } from "../../../contexts/FormBuilderContext";
 import FieldBuilder from "./FieldBuilder";
 import useFormBuilder from "~/hooks/useFormBuilder";
 import { api } from "~/trpc/react";
 import Spinner from "../../components/Spinner";
 import { SessionProvider, useSession } from "next-auth/react";
+import { CompleteForm } from "prisma/zod";
 
 const FieldCreatorButton: FC<PropsWithChildren<{ type: FieldType }>> = ({ children, type }) => {
   const { dispatch } = useFormBuilder();
@@ -155,12 +156,11 @@ const FormBuilder = () => {
   )
 }
 
-
-const FormBuilderContainer = () => {
+const FormBuilderContainer: FC<{ state: BuilderState }> = ({ state }) => {
   return (
     <SessionProvider>
       <DndProvider backend={HTML5Backend}>
-        <FormBuilderContextProvider>
+        <FormBuilderContextProvider state={state}>
           <FormBuilder />
         </FormBuilderContextProvider>
       </DndProvider>

@@ -76,8 +76,7 @@ const makeDefaultField = (type: FieldType, options?: { index: number }): FieldIn
   }
 }
 
-
-const makeDefaultState = () => {
+export const makeDefaultState = () => {
   const [titleField] = makeDefaultField(FieldType.MAIN_TITLE) as [FieldInsert];
 
   return {

@@ -62,11 +62,11 @@ export default function Navbar({ user }: { user: User | null }) {
                 </Disclosure.Button>
               </div>
               <div className="items-center hidden md:flex justify-between">
-                  {!user && (
-                    <>
                       <div className="flex-shrink-0 flex items-center space-x-3 p-3">
                         <DarkModeToggle />
                       </div>
+                  {!user && (
+                    <>
                       <div className="flex-shrink-0">
                       <Menu as="div" className="relative ml-3">
                         <Menu.Button className="relative btn">
@@ -150,12 +150,6 @@ export default function Navbar({ user }: { user: User | null }) {
                                 Sign out
                               </button>
                             )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            <div className='px-4 py-2 text-sm flex justify-between items-center'>
-                              <span>Dark Mode</span>
-                              <DarkModeToggle />
-                            </div>
                           </Menu.Item>
                         </Menu.Items>
                       </Transition>

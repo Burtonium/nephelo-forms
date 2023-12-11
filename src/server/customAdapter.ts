@@ -9,7 +9,7 @@ const CustomAdapter = (client: PrismaClient) => {
     async createUser(user: Omit<AdapterUser, 'id'>) {
       const created = await client.user.create({
         data: user,
-      })
+      });
 
       const count = await client.user.count();
 

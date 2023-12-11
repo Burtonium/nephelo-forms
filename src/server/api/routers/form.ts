@@ -41,6 +41,19 @@ export const formRouter = createTRPCRouter({
 
       return form ? RelatedFormModel.parse(form) : form;
     }),
+
+  fetchMine: publicProcedure.query(({ ctx }) => {
+    return ctx.db.form.findMany({
+      include: {
+        fields: true,
+        createdBy: true
+      },
+      where: {
+        createdById: ctx.session?.user.id
+      },
+      orderBy: { createdAt: "desc" },
+    });
+  }),
   fetchAll: publicProcedure.query(({ ctx }) => {
     return ctx.db.form.findMany({
       include: {

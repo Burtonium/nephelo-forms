@@ -41,11 +41,13 @@ export default async function RootLayout({
 
   return (
     <html className={classNames({ dark: theme === 'dark' })} lang="en">
-      <body className={`font-sans ${montserrat.variable} ${oswald.variable} dark:bg-zinc-900 bg-zinc-100`}>
+      <body className={`flex flex-col min-h-screen font-sans ${montserrat.variable} ${oswald.variable} dark:bg-zinc-900 bg-zinc-100`}>
         <CookiesProvider>
           <TRPCReactProvider cookies={cookies().toString()}>
             <Navbar user={user} />
-            {children}
+            <main className="flex-grow" >
+              {children}
+            </main>
           </TRPCReactProvider>
         </CookiesProvider>
       </body>

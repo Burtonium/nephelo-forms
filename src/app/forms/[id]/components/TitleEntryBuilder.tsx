@@ -20,7 +20,7 @@ const TitleDisplay: FC<Props> = ({ field }) => {
         {field.data.title}
       </h1>
       {field.data.description && (
-        <p>
+        <p className="dark:text-zinc-300 text-zinc-700">
           {field.data.description}
         </p>
       )}

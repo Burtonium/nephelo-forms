@@ -1,12 +1,13 @@
-import dynamic from 'next/dynamic';
+import { makeDefaultState } from '~/state/reducers/formBuilder';
+import FormBuilder from './components/FormBuilder';
 
-const Builder = dynamic(() => import('./components/FormBuilder'), { ssr: false });
 
 export default function Home() {
+  const state = makeDefaultState();
 
   return (
     <main>
-      <Builder />
+      <FormBuilder state={state} />
     </main>
   )
 }
