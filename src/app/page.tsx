@@ -17,7 +17,7 @@ export default async function Home() {
             A form builder like every other but worse!
           </h1>
           <p className="mt-6 text-lg leading-8">
-            Don't you hate it when you want to <strong>hire a developer</strong> and then find out he <strong>can&apos;t do the job?</strong> Well, thanks to this portfolio project
+            Don&apos;t you hate it when you want to <strong>hire a developer</strong> and then find out he <strong>can&apos;t do the job?</strong> Well, thanks to this portfolio project
             you now know Matt can <strong>build a mediocre form building app</strong>. Happy hiring.
           </p>
           <div className="mt-10 md:text-left text-center gap-x-6">
