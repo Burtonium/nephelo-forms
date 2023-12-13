@@ -11,28 +11,37 @@ export default async function Home() {
 
   return (
     <div className="relative  dark:bg-zinc-900">
-      <div className="wrapper overflow-hidden">
-        <div className="relative z-10 pt-10 lg:w-full lg:max-w-2xl">
-          <div className="relative py-32 sm:py-40">
-            <div>
-              <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-                A form builder that doesn&apos;t suck.
-              </h1>
-              <p className="mt-6 text-lg leading-8">
-                When I apply to companies they don&apos;t they need proof I can do the job.
-                This is that proof. Feast your eyes on this fully functioning website.
-              </p>
-              <div className="mt-10 flex items-center gap-x-6">
-                <Link className="btn" href="/builder">
-                  Try it now
-                </Link>
-                
-              </div>
-            </div>
-            <div>
-
-            </div>
+      <div className="wrapper grid mt-32 md:grid-cols-2 gap-20">
+        <div className="flex flex-col justify-center">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+            A form builder like every other but worse!
+          </h1>
+          <p className="mt-6 text-lg leading-8">
+            Don't you hate it when you want to <strong>hire a developer</strong> and then find out he <strong>can&apos;t do the job?</strong> Well, thanks to this portfolio project
+            you now know Matt can <strong>build a mediocre form building app</strong>. Happy hiring.
+          </p>
+          <div className="mt-10 md:text-left text-center gap-x-6">
+            <Link className="btn" href="/builder">
+              Try it now
+            </Link>
           </div>
+        </div>
+        <div className="hidden md:block">
+          <svg className="w-128 -my-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <defs>  
+              <linearGradient id="logo-gradient" x1="50%" y1="0%" x2="50%" y2="100%" > 
+                <stop offset="0%" stop-color="#7A5FFF">
+                    <animate attributeName="stop-color" values="#7A5FFF; #01FF89; #7A5FFF" dur="4s" repeatCount="indefinite"></animate>
+                </stop>
+                <stop offset="100%" stop-color="#01FF89">
+                    <animate attributeName="stop-color" values="#01FF89; #7A5FFF; #01FF89" dur="4s" repeatCount="indefinite"></animate>
+                </stop>
+              </linearGradient> 
+            </defs>
+            <path
+              fill="url(#logo-gradient)"
+              d="M448 75.2v361.7c0 24.3-19 43.2-43.2 43.2H43.2C19.3 480 0 461.4 0 436.8V75.2C0 51.1 18.8 32 43.2 32h361.7c24 0 43.1 18.8 43.1 43.2zm-37.3 361.6V75.2c0-3-2.6-5.8-5.8-5.8h-9.3L285.3 144 224 94.1 162.8 144 52.5 69.3h-9.3c-3.2 0-5.8 2.8-5.8 5.8v361.7c0 3 2.6 5.8 5.8 5.8h361.7c3.2.1 5.8-2.7 5.8-5.8zM150.2 186v37H76.7v-37h73.5zm0 74.4v37.3H76.7v-37.3h73.5zm11.1-147.3l54-43.7H96.8l64.5 43.7zm210 72.9v37h-196v-37h196zm0 74.4v37.3h-196v-37.3h196zm-84.6-147.3l64.5-43.7H232.8l53.9 43.7zM371.3 335v37.3h-99.4V335h99.4z"/>
+          </svg>
         </div>
       </div>
     </div>
